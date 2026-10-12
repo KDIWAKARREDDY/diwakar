@@ -1,0 +1,980 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diwakar Reddy | ECE Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #7657e8;
+            --secondary: #ff8b72;
+            --dark: #24213b;
+            --light: #f8f7fc;
+            --muted: #77758b;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+        header {
+            background: rgba(255,255,255,0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 20px #24213b0b;
+        }
+
+        nav {
+            min-height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        section {
+            padding: 85px 0;
+            scroll-margin-top: 75px;
+        }
+
+        .hero {
+            min-height: 580px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(120deg, #f8f7fc, #eee9ff);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 7px 15px;
+            background: #e8e0ff;
+            color: var(--primary);
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(36px, 5vw, 57px);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 600px;
+            margin-bottom: 25px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 23px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .profile-frame {
+            max-width: 350px;
+            margin: auto;
+            padding: 12px;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px #7657e825;
+            transform: rotate(2deg);
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 370px;
+            object-fit: cover;
+            border-radius: 18px;
+            display: block;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .accent {
+            color: var(--primary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .about-grid img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 18px;
+        }
+
+        .about-text p {
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat {
+            padding: 18px;
+            background: white;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--primary);
+            font-size: 19px;
+        }
+
+        .stat small {
+            color: var(--muted);
+        }
+
+        .skills-section {
+            background: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .skill {
+            margin-bottom: 20px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .bar {
+            height: 9px;
+            background: #eeeaf8;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), #b29dff);
+            border-radius: 20px;
+        }
+
+        .chart-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: 18px;
+            max-width: 450px;
+            margin: auto;
+            width: 100%;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px #24213b08;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px #7657e81c;
+        }
+
+        .card img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            font-size: 19px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 15px;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            background: #eee9ff;
+            color: #6344ce;
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .experience-section {
+            background: white;
+        }
+
+        .timeline {
+            max-width: 750px;
+            margin: auto;
+            border-left: 3px solid #dcd2ff;
+            padding-left: 30px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: var(--light);
+            border-radius: 14px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -39px;
+            top: 30px;
+            width: 13px;
+            height: 13px;
+            background: var(--primary);
+            border: 4px solid white;
+            border-radius: 50%;
+        }
+
+        .timeline-item h3 {
+            font-size: 18px;
+        }
+
+        .timeline-item h4 {
+            color: var(--primary);
+            font-size: 13px;
+            margin: 5px 0 12px;
+        }
+
+        .timeline-item p,
+        .timeline-item li {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .timeline-item ul {
+            padding-left: 20px;
+        }
+
+        .education-card {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            border-left: 5px solid var(--primary);
+        }
+
+        .education-card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .contact-section {
+            background: linear-gradient(120deg, #eee9ff, #fff1ec);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .contact-info,
+        .contact-form {
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+        }
+
+        .contact-info p {
+            margin: 15px 0;
+            overflow-wrap: anywhere;
+            font-size: 14px;
+        }
+
+        .contact-info a {
+            color: var(--primary);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 13px;
+            border: 1px solid #e5e2ee;
+            border-radius: 8px;
+            font: inherit;
+            font-size: 13px;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            font-size: 12px;
+        }
+
+        @media (max-width: 760px) {
+            nav {
+                padding: 15px 0;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .nav-links {
+                gap: 12px 18px;
+            }
+
+            .hero-content,
+            .about-grid,
+            .skills-grid,
+            .cards,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 55px 0;
+            }
+
+            .hero-content {
+                gap: 35px;
+            }
+
+            .profile-frame {
+                max-width: 290px;
+            }
+
+            .profile-frame img {
+                height: 300px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-heading h2 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="container">
+        <a href="#home" class="logo">DR.</a>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+    <div class="container hero-content">
+
+        <div>
+            <span class="tag">ECE STUDENT • EMBEDDED SYSTEMS</span>
+
+            <h1>Hello, I'm <span>Diwakar Reddy</span></h1>
+
+            <p>
+                Electronics and Communication Engineering student passionate
+                about embedded systems, microcontrollers, IoT, PCB design,
+                and innovative hardware solutions.
+            </p>
+
+            <div class="buttons">
+                <a class="btn btn-primary" href="#projects">Explore My Projects</a>
+                <a class="btn btn-outline" href="#contact">Contact Me</a>
+            </div>
+        </div>
+
+        <div class="profile-frame">
+            <img
+                src="diwakar.png"
+                alt="Diwakar Reddy profile photo"
+               
+            >
+        </div>
+
+    </div>
+</section>
+
+<section id="about">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>About <span class="accent">Me</span></h2>
+            <p>A little about my engineering journey</p>
+        </div>
+
+        <div class="about-grid">
+            <img
+                src="diwakar.png"
+                height="320"
+            >
+
+            <div class="about-text">
+                <h3>Electronics Engineer in the Making</h3>
+
+                <p>
+                    I am an Electronics and Communication Engineering
+                    undergraduate with a strong foundation in digital
+                    electronics, microcontrollers, Embedded C, and
+                    electronic circuit design.
+                </p>
+
+                <p>
+                    During my internship, I gained practical exposure to
+                    firmware development, sensor interfacing, communication
+                    protocols, debugging, and hardware testing.
+                </p>
+
+                <p>
+                    My goal is to build reliable, efficient, and practical
+                    technology solutions using embedded systems and IoT.
+                </p>
+
+                <div class="stats">
+                    <div class="stat">
+                        <strong>ECE</strong>
+                        <small>Engineering Branch</small>
+                    </div>
+
+                    <div class="stat">
+                        <strong>Embedded</strong>
+                        <small>Technical Interest</small>
+                    </div>
+
+                    <div class="stat">
+                        <strong>IoT</strong>
+                        <small>Project Interest</small>
+                    </div>
+
+                    <div class="stat">
+                        <strong>2027</strong>
+                        <small>Expected Graduation</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="skills-section" id="skills">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>My <span class="accent">Skills</span></h2>
+            <p>Technical knowledge and engineering tools</p>
+        </div>
+
+        <div class="skills-grid">
+
+            <div>
+                <div class="skill">
+                    <div class="skill-info">
+                        <span>Embedded C</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="bar"><span style="width:80%"></span></div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span>C Programming</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="bar"><span style="width:75%"></span></div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span>Microcontrollers</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="bar"><span style="width:75%"></span></div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span>PCB Design</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="bar"><span style="width:70%"></span></div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span>IoT and Sensor Interfacing</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="bar"><span style="width:75%"></span></div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span>Digital Electronics</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="bar"><span style="width:80%"></span></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <canvas id="skillsChart" aria-label="Technical skills radar chart"></canvas>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>My <span class="accent">Projects</span></h2>
+            <p>Engineering concepts and practical development</p>
+        </div>
+
+        <div class="cards">
+
+            <article class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&w=900&q=80"
+                    alt="Electric vehicle charging technology"
+                    loading="lazy"
+                >
+
+                <h3>EV Design and Simulation</h3>
+
+                <p>
+                    Explored electric vehicle architecture, motor and
+                    controller concepts, thermal management, and simulation
+                    approaches for electric mobility systems.
+                </p>
+
+                <div class="chips">
+                    <span class="chip">Electric Vehicles</span>
+                    <span class="chip">Simulation</span>
+                    <span class="chip">Motor Systems</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <img
+                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80"
+                    alt="Electronic circuit board"
+                    loading="lazy"
+                >
+
+                <h3>IoT Prototypes and PCB Design</h3>
+
+                <p>
+                    Worked on PCB layouts, sensor and microcontroller
+                    integration, Embedded C hardware control, and testing
+                    electronic prototypes.
+                </p>
+
+                <div class="chips">
+                    <span class="chip">IoT</span>
+                    <span class="chip">PCB Design</span>
+                    <span class="chip">Embedded C</span>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="experience-section" id="experience">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>My <span class="accent">Experience</span></h2>
+            <p>Industry exposure and practical learning</p>
+        </div>
+
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <h3>Embedded Systems Intern</h3>
+                <h4>INSPIRE LEAP Pvt. Ltd. | Hyderabad</h4>
+                <p><strong>May 2026 – July 2026</strong></p>
+
+                <ul>
+                    <li>Worked with microcontrollers and embedded hardware.</li>
+                    <li>Practiced UART, I2C, SPI, and GPIO interfaces.</li>
+                    <li>Developed and tested Embedded C firmware.</li>
+                    <li>Worked on sensor interfacing and debugging.</li>
+                    <li>Learned hardware testing and technical documentation.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="education">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>My <span class="accent">Education</span></h2>
+            <p>Academic background</p>
+        </div>
+
+        <div class="education-card">
+            <h3>Bachelor of Technology — ECE</h3>
+
+            <p><strong>Dr. K.V. Subba Reddy Institute of Technology</strong></p>
+
+            <p>Kurnool, Andhra Pradesh</p>
+
+            <p>August 2023 – April 2027</p>
+
+            <p>
+                Focus areas: Embedded Systems, Digital Electronics,
+                Microprocessors, Communication Systems, and IoT.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<section id="certifications">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Certifications & <span class="accent">Learning</span></h2>
+            <p>Courses and professional development</p>
+        </div>
+
+        <div class="cards">
+
+            <article class="card">
+                <h3>Programming in C#</h3>
+                <p>Certification in programming fundamentals using C#.</p>
+            </article>
+
+            <article class="card">
+                <h3>Embedded Systems Internship</h3>
+                <p>Summer Internship Certificate — INSPIRE LEAP Pvt. Ltd.</p>
+            </article>
+
+            <article class="card">
+                <h3>AI Tools and ChatGPT Workshop</h3>
+                <p>be10X workshop — February 2026.</p>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<section class="contact-section" id="contact">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Contact <span class="accent">Me</span></h2>
+            <p>Let's connect and discuss technology</p>
+        </div>
+
+        <div class="contact-grid">
+
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+
+                <p>
+                    <strong>Email:</strong><br>
+                    <a href="mailto:k.diwakarreddy9182@gmail.com">
+                        k.diwakarreddy9182@gmail.com
+                    </a>
+                </p>
+
+                <p>
+                    <strong>Phone:</strong><br>
+                    <a href="tel:+919182300214">+91 9182300214</a>
+                </p>
+
+                <p>
+                    <strong>Location:</strong><br>
+                    Gorantla, Sri Sathya Sai District, Andhra Pradesh
+                </p>
+
+                <p>
+                    <strong>LinkedIn:</strong><br>
+                    <a href="https://www.linkedin.com/in/diwakarreddy/"
+                       target="_blank" rel="noopener noreferrer">
+                        linkedin.com/in/diwakarreddy
+                    </a>
+                </p>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <h3>Send a Message</h3>
+
+                <input type="text" id="name" placeholder="Your Name" required>
+
+                <input type="email" id="email" placeholder="Your Email" required>
+
+                <textarea id="message" placeholder="Your Message" required></textarea>
+
+                <button type="submit" class="btn btn-primary">
+                    Send Email
+                </button>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <p>
+        © <span id="year"></span> Diwakar Reddy.
+        Designed with passion for technology.
+    </p>
+</footer>
+
+<script>
+    // Skills radar chart
+    const chartCanvas = document.getElementById("skillsChart");
+
+    new Chart(chartCanvas, {
+        type: "radar",
+
+        data: {
+            labels: [
+                "Embedded C",
+                "Microcontrollers",
+                "PCB Design",
+                "IoT",
+                "Digital Electronics",
+                "Debugging"
+            ],
+
+            datasets: [{
+                label: "Self-assessed skill level",
+                data: [80, 75, 70, 75, 80, 70],
+                backgroundColor: "rgba(118, 87, 232, 0.20)",
+                borderColor: "#7657e8",
+                pointBackgroundColor: "#ff8b72",
+                borderWidth: 2
+            }]
+        },
+
+        options: {
+            responsive: true,
+
+            scales: {
+                r: {
+                    min: 0,
+                    max: 100,
+
+                    ticks: {
+                        stepSize: 20,
+                        backdropColor: "transparent"
+                    },
+
+                    pointLabels: {
+                        color: "#24213b",
+                        font: {
+                            size: 11
+                        }
+                    }
+                }
+            },
+
+            plugins: {
+                legend: {
+                    position: "bottom"
+                }
+            }
+        }
+    });
+
+    // Automatically update footer year
+    document.getElementById("year").textContent =
+        new Date().getFullYear();
+
+    // Open a pre-filled email in the user's email application
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        const subject = encodeURIComponent("Portfolio enquiry from " + name);
+
+        const body = encodeURIComponent(
+            "Name: " + name +
+            "\nEmail: " + email +
+            "\n\nMessage:\n" + message
+        );
+
+        window.location.href =
+            "mailto:k.diwakarreddy9182@gmail.com?subject=" +
+            subject + "&body=" + body;
+    });
+</script>
+
+</body>
+</html>
